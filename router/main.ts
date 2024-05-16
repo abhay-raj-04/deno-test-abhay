@@ -9,7 +9,7 @@ router.get("/", (context) => {
 
 // Define routes for serving HTML pages of images of cars
 router.get("/cars", async (context) => {
-  await send(context, "cars.html", {
+  await send(context, "car.html", {
     root: `${Deno.cwd()}/public`,
   });
 });
