@@ -1,19 +1,28 @@
-import { Application, Router, send } from "https://deno.land/x/oak@14.2.0/mod.ts";
+import { Application, Router, send } from "https://deno.land/x/oak/mod.ts";
 
 const app = new Application();
-
 const router = new Router();
 
 router.get("/", (context) => {
   context.response.body = "Hello World!";
 });
 
-// Serve the generated HTML files
-router.get("/docs/:file", async (context) => {
-    console.log(context.params.file)
-    console.log(`lume/_site`)
-  await send(context, context.params.file, {
-    root: `lume/_site`,
+// Define routes for serving HTML pages of images of cars
+router.get("/cars", async (context) => {
+  await send(context, "cars.html", {
+    root: `${Deno.cwd()}/public`,
+  });
+});
+
+router.get("/cars/ferrari", async (context) => {
+  await send(context, "ferrari.html", {
+    root: `${Deno.cwd()}/public`,
+  });
+});
+
+router.get("/cars/tesla", async (context) => {
+  await send(context, "tesla.html", {
+    root: `${Deno.cwd()}/public`,
   });
 });
 
