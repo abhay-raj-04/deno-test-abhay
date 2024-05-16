@@ -11,9 +11,9 @@ router.get("/", (context) => {
 // Serve the generated HTML files
 router.get("/docs/:file", async (context) => {
     console.log(context.params.file)
-    console.log(`${Deno.cwd()}/_site`)
+    console.log(`lume/_site`)
   await send(context, context.params.file, {
-    root: `${Deno.cwd()}/_site`,
+    root: `lume/_site`,
   });
 });
 
