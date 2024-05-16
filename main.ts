@@ -1,13 +1,13 @@
-/// <reference no-default-lib="true" />
-/// <reference lib="dom" />
-/// <reference lib="dom.iterable" />
-/// <reference lib="dom.asynciterable" />
-/// <reference lib="deno.ns" />
+import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 
-import "$std/dotenv/load.ts";
+const app = new Application();
+const router = new Router();
 
-import { start } from "$fresh/server.ts";
-import manifest from "./fresh.gen.ts";
-import config from "./fresh.config.ts";
+router.get("/", (context) => {
+  context.response.body = "Hello World!";
+});
 
-await start(manifest, config);
+app.use(router.routes());
+app.use(router.allowedMethods());
+console.log("Server running on http://localhost:8800");
+await app.listen({ port: 8800 });
